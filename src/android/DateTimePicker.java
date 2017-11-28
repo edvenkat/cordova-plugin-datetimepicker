@@ -81,9 +81,9 @@ public class DateTimePicker extends CordovaPlugin {
         bundle.putSerializable("options", options);
 
         DatePickerFragment datePickerFragment = new DatePickerFragment();
-        datePickerFragment.setArguments(bundle);
-        datePickerFragment.setCallbackContext(callbackContext);
-        datePickerFragment.show(cordova.getActivity().getFragmentManager(), "datePicker");
+        //datePickerFragment.setArguments(bundle);
+        //datePickerFragment.setCallbackContext(callbackContext);
+        //datePickerFragment.show(cordova.getActivity().getFragmentManager(), "datePicker");
     }
 
 }
