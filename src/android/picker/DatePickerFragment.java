@@ -45,7 +45,8 @@ public class DatePickerFragment extends BasePickerFragment
 
          if (year == mYear && (month+1) == mMonth+1) {
                 if(day < mDay){
-                    Toast.makeText(context, "invalid date", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(context, "invalid date", Toast.LENGTH_LONG).show();
+                    sendResult();
                     return;
                 }
             }
