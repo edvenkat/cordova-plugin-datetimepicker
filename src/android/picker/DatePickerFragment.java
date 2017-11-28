@@ -35,7 +35,7 @@ public class DatePickerFragment extends BasePickerFragment
         }
         return datePickerDialog;
     }
-    public static boolean validatePastDate(Context mContext,int day,int month,int year){
+    public static boolean validatePastDate(int day,int month,int year){
             final Calendar c = Calendar.getInstance();
             int currentYear = c.get(Calendar.YEAR);
             int currentMonth = c.get(Calendar.MONTH)+1;
@@ -53,7 +53,7 @@ public class DatePickerFragment extends BasePickerFragment
 
             return true;
     }
-    public static boolean validateFutureDate(Context mContext,int day,int month,int year){
+    public static boolean validateFutureDate(int day,int month,int year){
             final Calendar c = Calendar.getInstance();
             int currentYear = c.get(Calendar.YEAR);
             int currentMonth = c.get(Calendar.MONTH)+1;
@@ -71,8 +71,8 @@ public class DatePickerFragment extends BasePickerFragment
             return true;
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        boolean past = DatePickerFragment.validatePastDate('',day,month,year);
-        boolean future = DatePickerFragment.validateFutureDate('',day,month,year);
+        boolean past = DatePickerFragment.validatePastDate(day,month,year);
+        boolean future = DatePickerFragment.validateFutureDate(day,month,year);
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
