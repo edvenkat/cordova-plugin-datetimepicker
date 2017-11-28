@@ -37,6 +37,18 @@ public class DatePickerFragment extends BasePickerFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
+         int mYear,mMonth,mDay;
+    Calendar mcurrentDate = Calendar.getInstance();
+    mYear = mcurrentDate.get(Calendar.YEAR);
+    mMonth = mcurrentDate.get(Calendar.MONTH);
+    mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+         if (year == mYear && (month+1) == mMonth+1) {
+                if(day < mDay){
+                    Toast.makeText(context, "invalid date", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
