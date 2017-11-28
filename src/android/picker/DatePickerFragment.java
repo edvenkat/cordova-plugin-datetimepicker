@@ -35,25 +35,48 @@ public class DatePickerFragment extends BasePickerFragment
         }
         return datePickerDialog;
     }
-
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-         int mYear,mMonth,mDay;
-    Calendar mcurrentDate = Calendar.getInstance();
-    mYear = mcurrentDate.get(Calendar.YEAR);
-    mMonth = mcurrentDate.get(Calendar.MONTH);
-    mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
-
-         if (year == mYear && (month+1) == mMonth+1) {
-                if(day < mDay){
-                   // Toast.makeText(context, "invalid date", Toast.LENGTH_LONG).show();
-                    //sendResult();
-                    return;
-                }
+    public static boolean validatePastDate(Context mContext,int day,int month,int year){
+            final Calendar c = Calendar.getInstance();
+            int currentYear = c.get(Calendar.YEAR);
+            int currentMonth = c.get(Calendar.MONTH)+1;
+            int currentDay = c.get(Calendar.DAY_OF_MONTH);
+            if (day > currentDay && year == currentYear && month == currentMonth) {
+               // Toast.makeText(mContext, "Please select valid date", Toast.LENGTH_LONG).show();
+                return false;
+            } else if (month > currentMonth && year == currentYear) {
+                //Toast.makeText(mContext, "Please select valid month", Toast.LENGTH_LONG).show();
+                return false;
+            } else if (year > currentYear) {
+               // Toast.makeText(mContext, "Please select valid year", Toast.LENGTH_LONG).show();
+                return false;
             }
+
+            return true;
+    }
+    public static boolean validateFutureDate(Context mContext,int day,int month,int year){
+            final Calendar c = Calendar.getInstance();
+            int currentYear = c.get(Calendar.YEAR);
+            int currentMonth = c.get(Calendar.MONTH)+1;
+            int currentDay = c.get(Calendar.DAY_OF_MONTH);
+            if (day < currentDay && year == currentYear && month == currentMonth) {
+               // Toast.makeText(mContext, "Please select valid date", Toast.LENGTH_LONG).show();
+                return false;
+            } else if (month < currentMonth && year == currentYear) {
+               // Toast.makeText(mContext, "Please select valid month", Toast.LENGTH_LONG).show();
+                return false;
+            } else if (year < currentYear) {
+               // Toast.makeText(mContext, "Please select valid year", Toast.LENGTH_LONG).show();
+                return false;
+            }
+            return true;
+    }
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        boolean past = DatePickerFragment.validatePastDate('',day,month,year);
+        boolean future = DatePickerFragment.validateFutureDate('',day,month,year);
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
-        sendResult();
+        sendResult1(past);
     }
 
 }
