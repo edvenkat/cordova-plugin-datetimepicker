@@ -20,7 +20,7 @@ public class BasePickerFragment extends DialogFragment {
         final PluginResult result = new PluginResult(PluginResult.Status.OK, String.valueOf(c.getTimeInMillis()));
         callbackContext.sendPluginResult(result);
     }
-    public void sendResult1(test) {
+    public void sendResult1(boolean test) {
         final PluginResult result = new PluginResult(PluginResult.Status.OK, test);
         callbackContext.sendPluginResult(result);
     }
